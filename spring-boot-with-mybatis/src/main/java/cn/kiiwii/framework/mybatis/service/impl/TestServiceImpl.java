@@ -2,11 +2,12 @@ package cn.kiiwii.framework.mybatis.service.impl;
 
 
 import cn.kiiwii.framework.mybatis.mapper.TestMapper;
+import cn.kiiwii.framework.mybatis.mapper.TestMapper2;
 import cn.kiiwii.framework.mybatis.model.Account;
+import cn.kiiwii.framework.mybatis.model.Account2;
 import cn.kiiwii.framework.mybatis.service.ITestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,11 @@ public class TestServiceImpl implements ITestService {
 
     @Resource
     private TestMapper testMapper;
+
+    @Resource
+    private TestMapper2 testMapper2;
+
+
     public void test() {
     }
 
@@ -43,15 +49,33 @@ public class TestServiceImpl implements ITestService {
     }
 
     @Override
-    public Account findAccountById(int i) {
+    public int insertAccount2(Account2 account2){
+        return this.testMapper2.insertAccount(account2);
+    }
 
+    @Override
+    public Account findAccountById(int i) {
         return this.testMapper.getAccountById(i);
     }
 
     @Override
+    public Account2 findAccount2ById(int i) {
+        return this.testMapper2.getAccount2ById(i);
+    }
 
+    @Override
     public List<Account> findAccountsById(int i) {
-        List<Account> accounts = this.testMapper.findAccountsById(i);
         return this.testMapper.findAccountsById(i);
+    }
+
+    @Override
+    public List<Account2> findAccount2sById(int i) {
+        return this.testMapper2.findAccount2sById(i);
+    }
+
+
+
+    public List<Account> findAccountUnionAll(int id){
+        return this.testMapper.findAccountUnionAll(id);
     }
 }

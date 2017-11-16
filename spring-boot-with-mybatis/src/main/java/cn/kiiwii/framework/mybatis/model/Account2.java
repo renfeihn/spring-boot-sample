@@ -9,20 +9,20 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class Account implements Serializable {
+public class Account2 implements Serializable {
 
     private int id;
     private String name;
     private double money;
     private String flag;
 
-    public Account() {
+    public Account2() {
         super();
     }
 
     @Override
     public String toString() {
-        return "Account [id=" + id + ", name=" + name + ", money=" + money + ", flag=" + flag
+        return "Account2 [id=" + id + ", name=" + name + ", money=" + money + ", flag=" + flag
                 + "]";
     }
 }

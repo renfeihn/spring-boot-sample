@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @Configuration
 public class DruidConfiguration {
     @Value("${spring.datasource.driverClassName}")
-    private String driver;
+    String driver;
     @Value("${spring.datasource.url}")
     String url;
     @Value("${spring.datasource.username}")

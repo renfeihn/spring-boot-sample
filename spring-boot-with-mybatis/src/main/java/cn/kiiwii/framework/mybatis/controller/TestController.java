@@ -2,9 +2,6 @@ package cn.kiiwii.framework.mybatis.controller;
 
 import cn.kiiwii.framework.mybatis.model.Account;
 import cn.kiiwii.framework.mybatis.service.ITestService;
-import cn.kiiwii.framework.mybatis.service.ITestXmlService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +22,8 @@ public class TestController {
     @Autowired
     private ITestService testService;
 
-    @Autowired
-    private ITestXmlService testXmlService;
+//    @Autowired
+//    private ITestXmlService testXmlService;
 
     @ResponseBody
     @RequestMapping("/test")
@@ -35,11 +32,11 @@ public class TestController {
         logger.info(accountList);
         return accountList;
     }
-    @ResponseBody
-    @RequestMapping("/testXml")
-    public List<Account> testXml(HttpServletRequest request, HttpServletResponse response) {
-        List<Account> accountList = this.testXmlService.findAccountsById(3);
-        logger.info(accountList);
-        return accountList;
-    }
+//    @ResponseBody
+//    @RequestMapping("/testXml")
+//    public List<Account> testXml(HttpServletRequest request, HttpServletResponse response) {
+//        List<Account> accountList = this.testXmlService.findAccountsById(3);
+//        logger.info(accountList);
+//        return accountList;
+//    }
 }

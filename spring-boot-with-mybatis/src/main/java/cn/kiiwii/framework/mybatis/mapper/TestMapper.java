@@ -18,11 +18,12 @@ public interface TestMapper {
 
     String MINUS_MONEY = "update account set money = money-#{1} where id = #{0}";
 
-    String INSERT_ACCOUT = "insert into account (name,money) values (#{name},#{money})";
+    String INSERT_ACCOUT = "insert into account (name,money,flag) values (#{name},#{money},#{flag})";
 
     String FIND_ACCOUNT_BY_ID = "select " +
             " id as id," +
             " name as name," +
+            " flag as flag," +
             " money as money" +
             " from account " +
             " where " +
@@ -31,10 +32,33 @@ public interface TestMapper {
     String FIND_ACCOUNTS_BY_ID = "select " +
             " id as id," +
             " name as name," +
+            " flag as flag," +
             " money as money" +
             " from account " +
             " where " +
-            " id >= #{id}";
+            " id >= #{id}" +
+            " and flag = 'N'";
+
+
+    String FIND_ACCOUNTS_UNION_ALL = "select " +
+            " id as id," +
+            " name as name," +
+            " money as money," +
+            " flag as flag" +
+            " from account " +
+            " where " +
+            " id >= #{id}" +
+            " and flag = 'N'" +
+            " union all " +
+            " select " +
+            " id as id," +
+            " name as name," +
+            " money as money," +
+            " flag as flag" +
+            " from account2 " +
+            " where " +
+            " id >= #{id}" ;
+
 
     @Update(ADD_MONEY)
     public int addMoney(int userId,float money);
@@ -54,5 +78,6 @@ public interface TestMapper {
     //@Cacheable(value = "indexCache",key = "'findAccountsById'+#id")
     public List<Account> findAccountsById(int id);
 
-
+    @Select(FIND_ACCOUNTS_UNION_ALL)
+    public List<Account> findAccountUnionAll(int id);
 }
